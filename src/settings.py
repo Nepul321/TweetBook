@@ -28,7 +28,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 
 # Application definition
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'pages',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +137,25 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+DEFAULT_RENDERER_CLASSES = [
+       'rest_framework.renderers.JSONRenderer',
+]
+
+DEFAULT_AUTHENTICATION_CLASSES = [
+    'rest_framework.authentication.SessionAuthentication',
+]
+
+if DEBUG:
+    DEFAULT_RENDERER_CLASSES += [
+        'rest_framework.renderers.BrowsableAPIRenderer', 
+        
+    ]
+
+REST_FRAMEWORK = {
+   "DEFAULT_AUTHENTICATION_CLASSES" : DEFAULT_AUTHENTICATION_CLASSES,
+   "DEFAULT_RENDERER_CLASSES" : DEFAULT_RENDERER_CLASSES
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
