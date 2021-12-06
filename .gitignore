@@ -5,3 +5,4 @@ Scripts/
 Lib/
 .env
 pyvenv.cfg
+staticfiles/
