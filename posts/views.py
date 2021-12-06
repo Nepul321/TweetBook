@@ -17,7 +17,7 @@ def post_list_view(request):
     serializer = PostSerializer(qs, many=True, context=context)
     return Response(serializer.data, status=200)
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'DELETE'])
 def post_detail_view(request, id):
     context = {'request' : request}
     qs = Post.objects.filter(id=id)
@@ -28,6 +28,9 @@ def post_detail_view(request, id):
         serializer = PostCreateSerializer(instance=obj, data=request.data)
         if serializer.is_valid(raise_exception=True):
             return Response(serializer.data, status=201)
+    if request.method == "DELETE" and obj.user == request.user:
+        obj.delete()
+        return Response({'message' : "Post successfully deleted"})
     serializer = PostSerializer(obj, context=context)
     return Response(serializer.data, status=200)
 
