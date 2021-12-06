@@ -1,0 +1,7 @@
+venv/
+virt/
+Include/
+Scripts/
+Lib/
+.env
+pyvenv.cfg
