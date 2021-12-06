@@ -4,6 +4,20 @@
 TweetBook - Home
 {% endblock title %}
 
+{% block style %}
+<link rel="stylesheet" href="/static/css/posts/home.css" />
+{% endblock style %}
+
 {% block content %}
-<h1>TweetBook</h1>
+<div class="container-fluid my-5">
+    <h1 class="text-center">TweetBook</h1>
+    <div id="root" class="container">
+
+    </div>
+</div>
+
 {% endblock content %}
+
+{% block js %}
+<script src="/static/js/posts/home.js"></script>
+{% endblock js %}

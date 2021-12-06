@@ -8,6 +8,6 @@ from django.urls import path
 
 urlpatterns = [
     path('', post_list_view, name="post-list"),
-    path('post/<str:id>/', post_detail_view, name="post-detail"),
-    path('posts/create/', post_create_view, name="post-create"),
+    path('<int:id>/', post_detail_view, name="post-detail"),
+    path('create/', post_create_view, name="post-create"),
 ]
