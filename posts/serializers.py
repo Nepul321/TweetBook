@@ -11,6 +11,14 @@ class UserPublicSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
         ]
+class PostCreateSerializer(serializers.ModelSerializer):
+    likes = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = Post
+        fields = ('id', 'content', 'likes')
+
+    def get_likes(self, obj):
+        return obj.likes.count()
 
 class PostSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField(read_only=True)
