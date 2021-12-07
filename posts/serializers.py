@@ -13,9 +13,10 @@ class UserPublicSerializer(serializers.ModelSerializer):
         ]
 class PostCreateSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField(read_only=True)
+    user = UserPublicSerializer(read_only=True)
     class Meta:
         model = Post
-        fields = ('id', 'content', 'likes')
+        fields = ('id', 'content', 'likes', 'user')
 
     def get_likes(self, obj):
         return obj.likes.count()

@@ -8,7 +8,7 @@ class Post(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['-timestamp']
 
     def __str__(self):
         return "Post " + str(self.id)

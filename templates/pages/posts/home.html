@@ -11,6 +11,15 @@ TweetBook - Home
 {% block content %}
 <div class="container-fluid my-5">
     <h1 class="text-center">TweetBook</h1>
+    <div class="container">
+        <form
+        id="post-create-form"
+      >
+        {% csrf_token %}
+        <textarea name="content"class="form-control"> </textarea>
+        <button class="btn btn-primary my-2">Post</button>
+      </form>
+    </div>
     <div id="root" class="container">
 
     </div>
