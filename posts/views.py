@@ -27,6 +27,7 @@ def post_detail_view(request, id):
     if request.method == "POST" and obj.user == request.user:
         serializer = PostCreateSerializer(instance=obj, data=request.data)
         if serializer.is_valid(raise_exception=True):
+            serializer.save()
             return Response(serializer.data, status=201)
     if request.method == "DELETE" and obj.user == request.user:
         obj.delete()
