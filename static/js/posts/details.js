@@ -85,6 +85,9 @@ function Delete() {
   xhr.send();
 }
 
+function Update() {
+    console.log("update")
+}
 
 function likeUnlike(id, action) {
     const endpoint = "/api/posts/action/"
@@ -128,7 +131,7 @@ function insertToRoot(post) {
   <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
  </div> 
  <br />
- ${post.is_owner === true ? ` <div class="btn-group my-3"><button class="btn btn-danger" onClick="Delete()">Delete</button><button class="btn btn-secondary">Update</button></div>` : "<div></div>"}
+ ${post.is_owner === true ? ` <div class="btn-group my-3"><button class="btn btn-danger" onClick="Delete()">Delete</button><button class="btn btn-secondary" onclick="Update();">Update</button></div>` : "<div></div>"}
 
  `
 }
