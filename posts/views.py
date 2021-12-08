@@ -29,10 +29,10 @@ def post_detail_view(request, id):
         return Response({'message' : 'Object not found'}, status=404)
     obj = qs.first()
     if request.method == "POST" and obj.user == request.user:
-        serializer = PostCreateSerializer(instance=obj, data=request.data)
+        serializer = PostCreateSerializer(instance=obj, data=request.data, context={'request' : request})
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(serializer.data, status=201)
+            return Response(serializer.data, status=200)
     if request.method == "DELETE" and obj.user == request.user:
         obj.delete()
         return Response({'message' : "Post successfully deleted"}, status=200)
