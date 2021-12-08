@@ -35,7 +35,7 @@ def post_detail_view(request, id):
             return Response(serializer.data, status=201)
     if request.method == "DELETE" and obj.user == request.user:
         obj.delete()
-        return Response({'message' : "Post successfully deleted"})
+        return Response({'message' : "Post successfully deleted"}, status=200)
     serializer = PostSerializer(obj, context=context)
     return Response(serializer.data, status=200)
 
