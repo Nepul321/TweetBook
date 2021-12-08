@@ -45,7 +45,7 @@ function UpdateOnlike(post) {
   <div class="btn-group">
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
-   <a href="" class="btn btn-outline-primary">View</a>
+   <a href="/${post.id}/" class="btn btn-outline-primary">View</a>
   </div>  
   
   `
@@ -97,7 +97,7 @@ function addNewPost(post) {
   <div class="btn-group">
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
-   <a href="" class="btn btn-outline-primary">View</a>
+   <a href="/${post.id}/" class="btn btn-outline-primary">View</a>
   </div>
   `
   card_correct.appendChild(card_body)
@@ -148,7 +148,7 @@ function insertToRoot(posts) {
        <div class="btn-group">
        <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
        <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
-       <a href="" class="btn btn-outline-primary">View</a>
+       <a href="/${post.id}/" class="btn btn-outline-primary">View</a>
       </div>
        `
        card.appendChild(card_body)
