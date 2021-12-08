@@ -47,7 +47,9 @@ function UpdateOnChange(post) {
     <div class="btn-group">
     <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
     <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
-   </div>  
+   </div>
+   <br />
+   ${post.is_owner === true ? ` <div class="btn-group my-3"><button class="btn btn-danger" onClick="Delete()">Delete</button><button class="btn btn-secondary">Update</button></div>` : "<div></div>"}  
     `
 }
 
@@ -126,7 +128,7 @@ function insertToRoot(post) {
   <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
  </div> 
  <br />
- ${post.is_owner === true ? ` <div class="btn-group my-3"><button class="btn btn-danger" onClick="Delete()">Delete</button><a class="btn btn-secondary">Update</a></div>` : "<div></div>"}
+ ${post.is_owner === true ? ` <div class="btn-group my-3"><button class="btn btn-danger" onClick="Delete()">Delete</button><button class="btn btn-secondary">Update</button></div>` : "<div></div>"}
 
  `
 }
