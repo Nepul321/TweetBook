@@ -75,7 +75,7 @@ function Delete() {
       alert("Post does not exist")
     } else if (xhr.status === 401 || xhr.status === 403) {
       alert("An authentication error, you are not logged in or this is not your post");
-      window.location.href = "/admin/login/?next=/" + info_div.id +  "/";
+      window.location.href = "/accounts/login/?next=/" + info_div.id +  "/";
     } else if (xhr.status === 500) {
       alert("Please try again");
     }    
@@ -126,7 +126,7 @@ function Update() {
             
             else if (xhr.status === 401 || xhr.status === 403) {
               alert("An authentication error, you are not logged in or this is not your post");
-              window.location.href = "/admin/login/?next=/" + info_div.id +  "/";
+              window.location.href = "/accounts/login/?next=/" + info_div.id +  "/";
             } 
             
             else if (xhr.status === 500) {
@@ -162,7 +162,7 @@ function likeUnlike(id, action) {
         alert("Post does not exist")
       } else if (xhr.status === 401 || xhr.status === 403) {
         alert("You must login");
-        window.location.href = "/admin/login/?next=/";
+        window.location.href = "/accounts/login/?next=/";
       } else if (xhr.status === 500) {
         alert("Please try again");
       }    

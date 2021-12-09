@@ -70,7 +70,7 @@ function likeUnlike(id, action) {
       alert("Post does not exist")
     } else if (xhr.status === 401 || xhr.status === 403) {
       alert("You must login");
-      window.location.href = "/admin/login/?next=/";
+      window.location.href = "/accounts/login/?next=/";
     } else if (xhr.status === 500) {
       alert("Please try again");
     }    
@@ -122,7 +122,7 @@ form.addEventListener('submit', (e) => {
       alert("Input empty or Post too long")
     } else if (xhr.status === 401 || xhr.status === 403) {
       alert("You must login");
-      window.location.href = "/admin/login/?next=/";
+      window.location.href = "/accounts/login/?next=/";
     } else if (xhr.status === 500) {
       alert("Please try again");
     }

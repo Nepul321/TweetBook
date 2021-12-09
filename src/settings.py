@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-LOGIN_URL = 'login'
+LOGIN_URL = 'accounts-login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'posts',
     'pages',
     'rest_framework',
+    'authentication',
 ]
 
 MIDDLEWARE = [
