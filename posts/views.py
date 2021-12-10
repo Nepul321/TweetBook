@@ -29,7 +29,7 @@ def post_detail_view(request, id):
         return Response({'message' : 'Object not found'}, status=404)
     obj = qs.first()
     if request.method == "POST" and obj.user == request.user:
-        serializer = PostCreateSerializer(instance=obj, data=request.data, context={'request' : request})
+        serializer = PostCreateSerializer(instance=obj, data=request.data, context=context)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=200)
@@ -42,7 +42,8 @@ def post_detail_view(request, id):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def post_create_view(request):
-    serializer = PostCreateSerializer(data=request.data)
+    context = {'request' : request}
+    serializer = PostCreateSerializer(data=request.data, context=context)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
