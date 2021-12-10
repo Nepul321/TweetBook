@@ -1,7 +1,17 @@
-from django.shortcuts import redirect, render
-from django.contrib.auth import login, logout
+from django.shortcuts import (
+        redirect, 
+        render,
+)
+from django.contrib.auth import (
+    login, 
+    logout,
+    update_session_auth_hash
+)
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import (
+        AuthenticationForm, 
+        PasswordChangeForm
+)
 from .decorators import unauthenticated_user
 from .forms import (
         AccountForm, 
@@ -58,3 +68,19 @@ def AccountView(request):
     }
 
     return render(request, template, context)
+
+@login_required
+def PasswordView(request):
+	template = "pages/auth/accounts/password.html"
+	form = PasswordChangeForm(user=request.user)
+	if request.method == "POST":
+		form = PasswordChangeForm(user=request.user, data=request.POST)
+		if form.is_valid():
+			form.save()
+			update_session_auth_hash(request, form.user)
+			return redirect('account')
+
+	context = {
+        'form' : form
+        }
+	return render(request, template, context)
