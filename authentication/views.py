@@ -3,7 +3,11 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .decorators import unauthenticated_user
-from .forms import SignUpForm
+from .forms import (
+        AccountForm, 
+        SignUpForm
+)
+
 @unauthenticated_user
 def LoginView(request):
     template = "pages/auth/login.html"
@@ -36,6 +40,21 @@ def SignUpView(request):
             return redirect('accounts-login')
     context = {
        'form' :  form,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def AccountView(request):
+    template = "pages/auth/accounts/account.html"
+    form = AccountForm(instance=request.user)
+    if request.method == "POST":
+        form = AccountForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+    context = {
+     'form' : form,
     }
 
     return render(request, template, context)
