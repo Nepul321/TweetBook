@@ -6,9 +6,10 @@ class Post(models.Model):
     user = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, related_name="post_likes", blank=True)
     date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['-time']
 
     def __str__(self):
         return "Post " + str(self.id)
