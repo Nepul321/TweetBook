@@ -46,7 +46,8 @@ function UpdateOnlike(post) {
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
    <a href="/${post.id}/" class="btn btn-outline-primary">View</a>
-  </div>  
+  </div>
+  <p class="my-3" style="font-size : 18px;">On ${post.date}</p>   
   
   `
 }
@@ -99,6 +100,7 @@ function addNewPost(post) {
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
    <a href="/${post.id}/" class="btn btn-outline-primary">View</a>
   </div>
+  <p class="my-3" style="font-size : 18px;">On ${post.date}</p>    
   `
   card_correct.appendChild(card_body)
   card.appendChild(card_correct)
@@ -150,6 +152,7 @@ function insertToRoot(posts) {
        <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
        <a href="/${post.id}/" class="btn btn-outline-primary">View</a>
       </div>
+      <p class="my-3" style="font-size : 18px;">On ${post.date}</p>  
        `
        card.appendChild(card_body)
        root.appendChild(card)

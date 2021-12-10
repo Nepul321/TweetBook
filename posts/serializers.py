@@ -2,6 +2,7 @@ from django.contrib.auth import models
 from rest_framework import serializers
 from .models import Post
 from django.contrib.auth.models import User
+import datetime
 
 POST_VALIDATE = ['like', 'unlike']
 
@@ -29,7 +30,7 @@ class PostCreateSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Post
-        fields = ('id', 'content', 'likes', 'user' ,'is_owner')
+        fields = ('id', 'content', 'likes', 'user' ,'is_owner', 'date')
 
     def get_likes(self, obj):
         return obj.likes.count()
@@ -41,13 +42,14 @@ class PostCreateSerializer(serializers.ModelSerializer):
                 return True
         return False
 
+
 class PostSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField(read_only=True)
     user = UserPublicSerializer(read_only=True)
     is_owner = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Post
-        fields = ('id', 'content', 'user', 'likes',  'is_owner')
+        fields = ('id', 'content', 'user', 'likes',  'is_owner', 'date')
 
     def get_likes(self, obj):
         return obj.likes.count()
