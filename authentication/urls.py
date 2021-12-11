@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import (
+    DeleteAccountView,
     LoginView,
     LogoutView,
     PasswordView,
@@ -13,4 +14,5 @@ urlpatterns = [
     path('sign-up/', SignUpView, name="signup"),
     path('account/', AccountView, name="account"),
     path('password/', PasswordView, name="password"),
+    path('delete/', DeleteAccountView, name="delete"),
 ]

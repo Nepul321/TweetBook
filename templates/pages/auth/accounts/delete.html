@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+TweetBook - Change password
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>Delete account</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <a href="{% url 'account' %}" class="btn btn-primary">Cancel</a>
+        <button class="btn btn-danger">Delete</button>
+    </form>
+</div>
+
+{% endblock content %}
