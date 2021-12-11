@@ -17,6 +17,7 @@ from .forms import (
         AccountForm, 
         SignUpForm
 )
+from django.contrib.auth.models import User
 
 @unauthenticated_user
 def LoginView(request):
@@ -45,7 +46,9 @@ def SignUpView(request):
     form = SignUpForm()
     if request.method == "POST":
         form = SignUpForm(request.POST)
-        if form.is_valid():
+        email = request.POST['email']
+        qs = User.objects.filter(email=email)
+        if form.is_valid() and not qs:
             form.save()
             return redirect('accounts-login')
     context = {
