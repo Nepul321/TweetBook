@@ -9,8 +9,10 @@ TweetBook - Change password
     <h1>Delete account</h1>
     <form action="" method="POST">
         {% csrf_token %}
-        <a href="{% url 'account' %}" class="btn btn-primary">Cancel</a>
-        <button class="btn btn-danger">Delete</button>
+        <div class="btn-group">
+            <a href="{% url 'account' %}" class="btn btn-primary">Cancel</a>
+            <button class="btn btn-danger">Delete</button>
+        </div>
     </form>
 </div>
 
