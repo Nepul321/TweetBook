@@ -1,8 +1,6 @@
-from django.contrib.auth import models
 from rest_framework import serializers
 from .models import Post
 from django.contrib.auth.models import User
-import datetime
 
 POST_VALIDATE = ['like', 'unlike']
 

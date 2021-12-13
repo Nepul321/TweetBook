@@ -23,6 +23,9 @@ from .forms import (
         AccountForm, 
         SignUpForm
 )
+from profiles.models import (
+    Profile
+)
 from django.contrib.auth.models import User
 from src.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
@@ -140,6 +143,10 @@ def ActivateAccountView(request, token):
                 user.save()
                 user.user.is_active = True
                 user.user.save()
+                profile = Profile.objects.create(
+                    user=user
+                )
+                profile.save()
             else:
                 return redirect('/')
         except:
