@@ -12,12 +12,22 @@ from django.contrib.auth.forms import (
         AuthenticationForm, 
         PasswordChangeForm
 )
-from .decorators import unauthenticated_user
+from .models import (
+    UserKey
+)
+from .decorators import (
+    unauthenticated_user,
+    not_active_user
+    )
 from .forms import (
         AccountForm, 
         SignUpForm
 )
 from django.contrib.auth.models import User
+from src.settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
+
+current_host = "http://localhost:8000"
 
 @unauthenticated_user
 def LoginView(request):
@@ -50,7 +60,27 @@ def SignUpView(request):
         qs = User.objects.filter(email=email)
         if form.is_valid() and not qs:
             form.save()
-            return redirect('accounts-login')
+            qs = User.objects.filter(username=request.POST['username'])
+            user = qs.first()
+            user_key = UserKey.objects.create(
+                user=user
+            )
+            user_key.save()
+            user.is_active = False
+            user.save()
+            subject = "Verify your email"
+            message = f"Thanks for signing up. \n Verify your email - {current_host}/accounts/activate-account/{user_key.key}/"
+            email_from = EMAIL_HOST_USER
+            recipient_list = [user.email, ]
+            send_mail(subject, message, email_from, recipient_list)
+            template2 = "pages/auth/accounts/email_sent.html"
+            context2 = {
+
+            }
+
+            return render(request, template2, context2)
+
+
     context = {
        'form' :  form,
     }
@@ -100,3 +130,20 @@ def DeleteAccountView(request):
     }
 
     return render(request, template, context)
+
+@not_active_user
+def ActivateAccountView(request, token):
+        try:
+            user = UserKey.objects.get(key=token)
+            if user.activated == False:
+                user.activated = True
+                user.save()
+                user.user.is_active = True
+                user.user.save()
+            else:
+                return redirect('/')
+        except:
+            return redirect('/')
+        template = 'pages/auth/accounts/email_verified.html'
+        context = {}
+        return render(request, template, context)
