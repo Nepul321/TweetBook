@@ -6,4 +6,5 @@ class Profile(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to="profiles-pics/")
     location = models.CharField(blank=True, max_length=100)
     bio = models.TextField(blank=True)
+    joined = models.DateField(auto_now_add=True)
     followers = models.ManyToManyField(User, blank=True, related_name="following")

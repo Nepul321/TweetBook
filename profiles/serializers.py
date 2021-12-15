@@ -12,7 +12,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ('id', 'username', 'image', 'followers', 'following', 'bio', 'location', 'is_following', 'name')
+        fields = ('id', 'username', 'image', 'followers', 'following', 'bio', 'location', 'is_following', 'name', 'joined')
 
     # def get_image_url(self, obj):
     #     image = ''
