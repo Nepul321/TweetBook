@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-from profiles.models import Profile
 
 def HomeView(request):
     template = "pages/posts/home.html"
