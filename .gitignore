@@ -6,3 +6,4 @@ Lib/
 .env
 pyvenv.cfg
 staticfiles/
+media/

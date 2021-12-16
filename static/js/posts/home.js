@@ -123,7 +123,7 @@ form.addEventListener('submit', (e) => {
     } else if(xhr.status === 400) {
       alert("Input empty or Post too long")
     } else if (xhr.status === 401 || xhr.status === 403) {
-      alert("You must login");
+      alert("Authentication error");
       window.location.href = "/accounts/login/?next=/";
     } else if (xhr.status === 500) {
       alert("Please try again");

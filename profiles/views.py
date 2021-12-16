@@ -32,9 +32,11 @@ def ProfileDetail(request, username):
         action = data.get('action')
         if obj.user != me:
             if action == "follow":
-                obj.followers.add(me)
+                if me.is_authenticated == True:
+                    obj.followers.add(me)
             elif action == "unfollow":
-                obj.followers.remove(me)
+                if me.is_authenticated == True:
+                    obj.followers.remove(me)
             else:
                 pass
     serializer = ProfileSerializer(instance=obj, context=context)

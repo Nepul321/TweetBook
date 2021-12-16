@@ -73,7 +73,7 @@ def post_like_unlike_view(request):
             serializer = PostSerializer(obj, context=context)
             return Response(serializer.data, status=200)
 
-    return Response({}, 200)
+    return Response({}, status=401)
 
 
 

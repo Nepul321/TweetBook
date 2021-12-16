@@ -20,7 +20,7 @@ function UpdateOnChange(item) {
     <div class="card mb-3">
          <div class="row g-0">
         <div class="col-md-4">
-        <img src="https://www.w3schools.com/howto/img_avatar.png" class="img-fluid rounded-start" alt="" />
+        ${item.image ? `<img src="${item.image}" class="img-fluid rounded-start" alt="" />` : `        <img src="https://www.w3schools.com/howto/img_avatar.png" class="img-fluid rounded-start" alt="" />`}
         </div>
         <div class="col-md-8">
         <div class="card-body">
@@ -56,7 +56,7 @@ function followUnFollow(action) {
       } else if(xhr.status === 404) {
         alert("Profile does not exist")
       } else if (xhr.status === 401 || xhr.status === 403) {
-        alert("You must login");
+        alert("Authentication error");
         console.log(xhr.response)
         // window.location.href = "/accounts/login/?next=/";
       } else if (xhr.status === 500) {
@@ -76,7 +76,7 @@ function InsertToRoot(item) {
     <div class="card mb-3">
          <div class="row g-0">
         <div class="col-md-4">
-        <img src="https://www.w3schools.com/howto/img_avatar.png" class="img-fluid rounded-start" alt="" />
+        ${item.image ? `<img src="${item.image}" class="img-fluid rounded-start" alt="" />` : `        <img src="https://www.w3schools.com/howto/img_avatar.png" class="img-fluid rounded-start" alt="" />`}
         </div>
         <div class="col-md-8">
         <div class="card-body">
