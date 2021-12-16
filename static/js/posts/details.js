@@ -44,7 +44,7 @@ function getCookie(name) {
 
 function UpdateOnChange(post) {
     info_div.innerHTML = `
-    <h2>@${post.user.username} (${post.user.first_name} ${post.user.last_name})</h2>
+    <h2><a href="/profile/${post.user.username}/">@${post.user.username}</a> (${post.user.first_name} ${post.user.last_name})</h2>
     <p class="content">${post.content}</p>
     <div class="btn-group">
     <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
@@ -178,7 +178,7 @@ function likeUnlike(id, action) {
 
 function insertToRoot(post) {
  info_div.innerHTML = `
-  <h2>@${post.user.username} (${post.user.first_name} ${post.user.last_name})</h2>
+ <h2><a href="/profile/${post.user.username}/">@${post.user.username}</a> (${post.user.first_name} ${post.user.last_name})</h2>
   <p class="content">${post.content}</p>
   <div class="btn-group">
   <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>

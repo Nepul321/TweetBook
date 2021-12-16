@@ -41,7 +41,7 @@ function UpdateOnlike(post) {
   const postdiv = document.getElementById(post.id)
   postdiv.innerHTML = `
   <p class="post-content">${post.content}</p>
-  <p class="post-username">@${post.user.username}</p>
+  <p class="post-username"><a href="/profile/${post.user.username}/">@${post.user.username}</a></p>
   <div class="btn-group">
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
@@ -94,7 +94,7 @@ function addNewPost(post) {
   card_body.className += "card-body py-2"
   card_body.innerHTML = `
   <p class="post-content">${post.content}</p>
-  <p class="post-username">@${post.user.username}</p>
+  <p class="post-username"><a href="/profile/${post.user.username}/">@${post.user.username}</a></p>
   <div class="btn-group">
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
    <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
@@ -146,7 +146,7 @@ function insertToRoot(posts) {
        card_body.className += "card-body py-2"
        card_body.innerHTML = `
        <p class="post-content">${post.content}</p>
-       <p class="post-username">@${post.user.username}</p>
+       <p class="post-username"><a href="/profile/${post.user.username}/">@${post.user.username}</a></p>
        <div class="btn-group">
        <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'like');">${post.likes} Likes</button>
        <button class="btn btn-primary" onclick="likeUnlike(${post.id}, 'unlike');">Unlike</button>
