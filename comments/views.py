@@ -26,3 +26,7 @@ def comment_details(request, id):
     serializer = CommentSerializer(obj, context=context)
 
     return Response(serializer.data, status=200)
+
+# @api_view(['POST'])
+# def comment_create(request):
+#     pass
