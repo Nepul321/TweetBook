@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/profiles/', include('profiles.urls')),
     path('', include('django.contrib.auth.urls')),
     path('accounts/', include('authentication.urls')),
+    path('api/comments/', include('comments.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=MEDIA_ROOT)

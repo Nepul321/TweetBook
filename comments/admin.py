@@ -1,3 +1,12 @@
 from django.contrib import admin
+from .models import (
+    Comment,
+    Reply,
+    SubReply
+)
 
-# Register your models here.
+def registerModels(models):
+    for model in models:
+        admin.site.register(model)
+
+registerModels([Comment, Reply, SubReply])
