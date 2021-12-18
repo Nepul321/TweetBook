@@ -17,7 +17,11 @@ from rest_framework.response import Response
 @api_view(['GET'])
 def post_list_view(request):
     context = {'request' : request}
-    qs = Post.objects.all()
+    username = request.GET.get("username")
+    if username:
+        qs = Post.objects.filter(user__username__iexact=username)
+    else:
+        qs = Post.objects.all()
     serializer = PostSerializer(qs, many=True, context=context)
     return Response(serializer.data, status=200)
 

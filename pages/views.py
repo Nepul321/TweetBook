@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from profiles.forms import ProfileForm
 from profiles.models import Profile
@@ -41,6 +42,19 @@ def ProfileEdit(request):
     context = {
       'form' : form,
       'profile' : profile,
+    }
+
+    return render(request, template, context)
+
+def UserPostsView(request, username):
+    template = "pages/posts/user_posts.html"
+    qs = User.objects.filter(username=username)
+    if qs:
+        obj = qs.first()
+    else:
+        return redirect('/')
+    context = {
+        'username' : obj.username or '',
     }
 
     return render(request, template, context)

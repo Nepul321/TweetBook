@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Posts - @{{ username }}
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/css/posts/home.css" />
+{% endblock style %}
+
+{% block content %}
+<div class="container my-5" id="root">
+    <h1>Posts - {{ username }}</h1>
+    <div class="posts" id="{{ username }}">
+
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script src="/static/js/posts/user_posts.js"></script>
+{% endblock js %}

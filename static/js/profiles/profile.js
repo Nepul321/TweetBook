@@ -30,7 +30,7 @@ function UpdateOnChange(item) {
             <p class="card-text">Followers ${item.followers}, Following ${item.following}</p>
             ${item.is_following === false ? `<button class="btn btn-primary" onclick="followUnFollow('follow')">Follow</button>` : `<button class="btn btn-primary"onclick="followUnFollow('unfollow')">Unfollow</button>`}
             <p class="card-text my-3"><small class="text-muted">Joined on ${item.joined}</small></p>
-            <a href="" class="btn btn-outline-success">View posts &#8594;</a>
+            <a href="/posts/${item.username}/" class="btn btn-outline-success">View posts &#8594;</a>
         </div>
         </div>
     </div>
@@ -86,7 +86,7 @@ function InsertToRoot(item) {
             <p class="card-text">Followers ${item.followers}, Following ${item.following}</p>
             ${item.is_following === false ? `<button class="btn btn-primary" onclick="followUnFollow('follow')">Follow</button>` : `<button class="btn btn-primary"onclick="followUnFollow('unfollow')">Unfollow</button>`}
             <p class="card-text my-3"><small class="text-muted">Joined on ${item.joined}</small></p>
-            <a href="" class="btn btn-outline-success">View posts &#8594;</a>
+            <a href="/posts/${item.username}/" class="btn btn-outline-success">View posts &#8594;</a>
         </div>
         </div>
     </div>
