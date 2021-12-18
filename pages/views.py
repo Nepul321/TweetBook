@@ -1,4 +1,7 @@
 from django.shortcuts import redirect, render
+from profiles.forms import ProfileForm
+from profiles.models import Profile
+from django.contrib.auth.decorators import login_required
 
 def HomeView(request):
     template = "pages/posts/home.html"
@@ -21,6 +24,23 @@ def ProfilePage(request, username):
     obj = username
     context = {
       'profile' : obj,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def ProfileEdit(request):
+    template = "pages/profiles/profile-update.html"
+    profile = Profile.objects.get(user=request.user)
+    form = ProfileForm(instance=profile)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile-edit')
+    context = {
+      'form' : form,
+      'profile' : profile,
     }
 
     return render(request, template, context)
