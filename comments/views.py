@@ -20,7 +20,7 @@ def comment_list(request):
 
 @api_view(['GET', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def comment_details(request, id):
+def comment_details_delete(request, id):
     context = {'request' : request}
     qs = Comment.objects.filter(id=id)
     if not qs:
