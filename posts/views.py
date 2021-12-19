@@ -5,7 +5,6 @@ from rest_framework.decorators import (
 )
 from .models import Post
 from .serializers import (
-    PostCreateSerializer,
     PostSerializer,
     PostActionSerializer
 )
@@ -47,7 +46,7 @@ def post_detail_view(request, id):
 @permission_classes([IsAuthenticated])
 def post_create_view(request):
     context = {'request' : request}
-    serializer = PostCreateSerializer(data=request.data, context=context)
+    serializer = PostSerializer(data=request.data, context=context)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)

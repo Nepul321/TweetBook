@@ -22,25 +22,7 @@ class PostActionSerializer(serializers.Serializer):
         if value not in POST_VALIDATE:
             raise serializers.ValidationError("This is not a valid action")
         return value    
-class PostCreateSerializer(serializers.ModelSerializer):
-    likes = serializers.SerializerMethodField(read_only=True)
-    user = UserPublicSerializer(read_only=True)
-    is_owner = serializers.SerializerMethodField(read_only=True)
-    class Meta:
-        model = Post
-        fields = ('id', 'content', 'likes', 'user' ,'is_owner', 'date')
-
-    def get_likes(self, obj):
-        return obj.likes.count()
-
-    def get_is_owner(self, obj):
-        request = self.context['request']
-        if request.user.is_authenticated:
-            if obj.user == request.user:
-                return True
-        return False
-
-
+        
 class PostSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField(read_only=True)
     user = UserPublicSerializer(read_only=True)
