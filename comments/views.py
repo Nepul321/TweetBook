@@ -66,6 +66,7 @@ def post_comments_list(request, id):
     return Response(serializer.data, status=200)
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def comment_like_unlike(request):
     context = {'request' : request}
     serializer = CommentActionSerializer(data=request.data)

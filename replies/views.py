@@ -66,11 +66,12 @@ def comments_reply_list(request, id):
     if not qs:
         return Response({"message" : "Comment not found"}, status=404)
     obj = qs.first()
-    replies = Reply.objects.filter(post=obj)
+    replies = Reply.objects.filter(comment=obj)
     serializer = ReplySerializer(replies, many=True, context=context)
     return Response(serializer.data, status=200)
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def reply_like_unlike(request):
     context = {'request' : request}
     serializer = ReplyActionSerializer(data=request.data)
