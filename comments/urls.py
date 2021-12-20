@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     comment_create,
     comment_details_delete,
+    comment_like_unlike,
     comment_list,
     post_comments_list
 )
@@ -11,4 +12,5 @@ urlpatterns = [
     path("<int:id>/", comment_details_delete, name="comment-details"),
     path('create/', comment_create, name="comment-create"),
     path('post/<int:id>/', post_comments_list, name="post-comments-list"),
+    path('like-unlike/', comment_like_unlike, name="like-unlike"),
 ]

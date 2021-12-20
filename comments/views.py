@@ -1,4 +1,4 @@
-from comments.serializers import CommentSerializer
+from comments.serializers import CommentActionSerializer, CommentSerializer
 from .models import Comment
 from rest_framework.response import Response
 from rest_framework.decorators import (
@@ -64,3 +64,27 @@ def post_comments_list(request, id):
     comments = Comment.objects.filter(post=obj)
     serializer = CommentSerializer(comments, many=True, context=context)
     return Response(serializer.data, status=200)
+
+@api_view(['POST'])
+def comment_like_unlike(request):
+    context = {'request' : request}
+    serializer = CommentActionSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        data = serializer.validated_data
+        id = data.get("id")
+        action = data.get("action")
+        qs = Comment.objects.filter(id=id)
+        if not qs:
+            return Response({'message' : 'Comment not found'}, status=404)
+
+        obj = qs.first()
+        if action == "like":
+            obj.likes.add(request.user)
+            serializer = CommentSerializer(obj, context=context)
+            return Response(serializer.data, status=200)
+        elif action == "unlike":
+            obj.likes.remove(request.user)
+            serializer = CommentSerializer(obj, context=context)
+            return Response(serializer.data, status=200)
+    
+    return Response({}, status=401)

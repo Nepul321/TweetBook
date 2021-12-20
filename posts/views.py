@@ -32,7 +32,7 @@ def post_detail_view(request, id):
         return Response({'message' : 'Object not found'}, status=404)
     obj = qs.first()
     if request.method == "POST" and obj.user == request.user:
-        serializer = PostCreateSerializer(instance=obj, data=request.data, context=context)
+        serializer = PostSerializer(instance=obj, data=request.data, context=context)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=200)
