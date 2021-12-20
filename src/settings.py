@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'rest_framework',
     'authentication',
     'profiles',
@@ -139,6 +140,21 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+LINODE_BUCKET = os.getenv('LINODE_BUCKET')
+LINODE_BUCKET_REGION = os.getenv('LINODE_BUCKET_REGION')
+LINODE_BUCKET_ACCESS_KEY = os.getenv('LINODE_BUCKET_ACCESS_KEY')
+LINODE_BUCKET_SECRET_KEY = os.getenv('LINODE_BUCKET_SECRET_KEY')
+
+AWS_S3_ENDPOINT_URL=f'https://{LINODE_BUCKET_REGION}.linodeobjects.com'
+AWS_ACCESS_KEY_ID=LINODE_BUCKET_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY=LINODE_BUCKET_SECRET_KEY
+AWS_S3_REGION_NAME=LINODE_BUCKET_REGION
+AWS_S3_USE_SSL=True
+AWS_STORAGE_BUCKET_NAME=LINODE_BUCKET
 
 DEFAULT_RENDERER_CLASSES = [
        'rest_framework.renderers.JSONRenderer',
