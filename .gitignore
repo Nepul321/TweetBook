@@ -7,3 +7,4 @@ Lib/
 pyvenv.cfg
 staticfiles/
 media/
+db.sqlite3
