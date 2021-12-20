@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 @{{ profile }}
 {% endblock title %}
@@ -12,5 +14,5 @@
 {% endblock content %}
 
 {% block js %}
-<script src="/static/js/profiles/profile.js"></script>
+<script src="{% static '/js/profiles/profile.js' %}"></script>
 {% endblock js %}

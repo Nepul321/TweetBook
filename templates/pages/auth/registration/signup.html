@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 TweetBook - Sign up
 {% endblock title %}
@@ -20,5 +22,5 @@ TweetBook - Sign up
 {% endblock content %}
 
 {% block js %}
-<script src="/static/js/auth/signup.js"></script>
+<script src="{% static '/js/auth/signup.js' %}"></script>
 {% endblock js %}

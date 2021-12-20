@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 Posts - @{{ username }}
 {% endblock title %}
 
 {% block style %}
-<link rel="stylesheet" href="/static/css/posts/home.css" />
+<link rel="stylesheet" href="{% static '/css/posts/home.css' %}" />
 {% endblock style %}
 
 {% block content %}
@@ -18,5 +20,5 @@ Posts - @{{ username }}
 {% endblock content %}
 
 {% block js %}
-<script src="/static/js/posts/user_posts.js"></script>
+<script src="{% static '/js/posts/user_posts.js' %}"></script>
 {% endblock js %}

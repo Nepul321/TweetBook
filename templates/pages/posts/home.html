@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 TweetBook - Home
 {% endblock title %}
 
 {% block style %}
-<link rel="stylesheet" href="/static/css/posts/home.css" />
+<link rel="stylesheet" href="{% static '/css/posts/home.css' %}" />
 {% endblock style %}
 
 {% block content %}
@@ -28,5 +30,5 @@ TweetBook - Home
 {% endblock content %}
 
 {% block js %}
-<script src="/static/js/posts/home.js"></script>
+<script src="{% static '/js/posts/home.js' %}"></script>
 {% endblock js %}
