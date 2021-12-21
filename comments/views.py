@@ -40,7 +40,7 @@ def comment_create(request):
     data = request.data
     serializer = CommentSerializer(data=data, context=context)
     if serializer.is_valid(raise_exception=True):
-        posts = Post.objects.filter(id=int(data.get('post')))
+        posts = Post.objects.filter(id=int(data.get("post")))
         if not posts:
             return Response({"message" : "Post not found"}, status=404)
 

@@ -2,6 +2,7 @@ const info_div = document.querySelector(".info");
 const update_div = document.querySelector(".update");
 let item = {};
 const comments = document.querySelector(".comments");
+const form = document.querySelector("#commentCreateForm")
 
 function getData() {
   const xhr = new XMLHttpRequest();
@@ -205,33 +206,6 @@ function insertToRoot(post) {
  `;
 }
 
-function UpdateCommentOnChange(item) {
- const commentEl = document.querySelector(`#comment-${item.id}`)
- commentEl.innerHTML = `
- <p>${item.user.first_name} ${item.user.last_name} (<a href="/profile/${item.user.username}">@${item.user.username}</a>)</p>
- <p style="font-size : 20px;">${item.content}</p>
- <p class="text-muted small">On ${item.date}</p>
- <div class="btn-group">
- ${
-   item.is_owner === true
-   ? 
-   `
-   <button class="btn btn-danger">Delete</button>
-   <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})"> ${item.likes} Likes</button>
-   <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
-   <a href="" class="btn btn-outline-primary">Replies</a>
-   `
-   :
-   `
-   <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
-   <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
-   <a href="" class="btn btn-outline-primary">Replies</a>
-   `
- }
- </div>
- `
-}
-
 function likeUnlikeComment(action, id) {
   const endpoint = "/api/comments/like-unlike/";
   const data = { id: id, action: action };
@@ -317,6 +291,99 @@ function DeleteComment(id) {
 
   xhr.send();
 }
+
+
+function UpdateCommentOnChange(item) {
+  const commentEl = document.querySelector(`#comment-${item.id}`)
+  commentEl.innerHTML = `
+  <p>${item.user.first_name} ${item.user.last_name} (<a href="/profile/${item.user.username}">@${item.user.username}</a>)</p>
+  <p style="font-size : 20px;">${item.content}</p>
+  <p class="text-muted small">On ${item.date}</p>
+  <div class="btn-group">
+  ${
+    item.is_owner === true
+    ? 
+    `
+    <button class="btn btn-danger" onclick="DeleteComment(${item.id})">Delete</button>
+    <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})"> ${item.likes} Likes</button>
+    <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
+    <a href="" class="btn btn-outline-primary">Replies</a>
+    `
+    :
+    `
+    <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
+    <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
+    <a href="" class="btn btn-outline-primary">Replies</a>
+    `
+  }
+  </div>
+  `
+ }
+
+function addNewPost(item) {
+  const card = document.createElement("div")
+  const card_correct = document.createElement("div")
+  const card_body = document.createElement("div")
+  card_correct.className += "card mb-3"
+  card_body.id  = `comment-${item.id}`
+  card_body.className += "card-body"
+  card_body.innerHTML = `
+  <p>${item.user.first_name} ${item.user.last_name} (<a href="/profile/${item.user.username}">@${item.user.username}</a>)</p>
+  <p style="font-size : 20px;">${item.content}</p>
+  <p class="text-muted small">On ${item.date}</p>
+  <div class="btn-group">
+  ${
+    item.is_owner === true
+    ? 
+    `
+    <button class="btn btn-danger" onclick="DeleteComment(${item.id})">Delete</button>
+    <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})"> ${item.likes} Likes</button>
+    <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
+    <a href="" class="btn btn-outline-primary">Replies</a>
+    `
+    :
+    `
+    <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
+    <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
+    <a href="" class="btn btn-outline-primary">Replies</a>
+    `
+  }
+  </div>
+  `
+  card_correct.appendChild(card_body)
+  card.appendChild(card_correct)
+  return card.innerHTML
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const myForm = e.target
+  const myformdata = new FormData(myForm)
+  const endpoint = "/api/comments/create/"
+  const method = "POST"
+  const xhr = new XMLHttpRequest();
+  xhr.open(method, endpoint)
+  xhr.onload = () => {
+    if (xhr.status === 201) {
+      const responseData = JSON.parse(xhr.response)
+      comments.innerHTML = addNewPost(responseData) + comments.innerHTML
+    } else if(xhr.status === 400) {
+      alert("Input empty or Post too long")
+    } else if (xhr.status === 401 || xhr.status === 403) {
+      alert("Authentication error");
+      window.location.href = "/accounts/login/?next=/";
+    } else if (xhr.status === 500) {
+      alert("Please try again");
+    } else if(xhr.status === 404) {
+      alert("Post not found")
+    }
+    myForm.reset();
+  }
+  xhr.onerror = () => {
+    alert("An error occured. Please try again");
+  };
+  xhr.send(myformdata)
+})
 
 function insertComments(items) {
   items.forEach((item) => {
