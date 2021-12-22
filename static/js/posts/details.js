@@ -275,7 +275,7 @@ function DeleteComment(id) {
       alert(response.message);
       window.location.reload();
     } else if (xhr.status === 404) {
-      alert("Post does not exist");
+      alert("Comment does not exist");
     } else if (xhr.status === 401 || xhr.status === 403) {
       alert(
         "An authentication error, you are not logged in or this is not your post"
@@ -307,13 +307,13 @@ function UpdateCommentOnChange(item) {
     <button class="btn btn-danger" onclick="DeleteComment(${item.id})">Delete</button>
     <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})"> ${item.likes} Likes</button>
     <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
-    <a href="" class="btn btn-outline-primary">Replies</a>
+    <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
     `
     :
     `
     <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
     <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
-    <a href="" class="btn btn-outline-primary">Replies</a>
+    <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
     `
   }
   </div>
@@ -339,13 +339,13 @@ function addNewPost(item) {
     <button class="btn btn-danger" onclick="DeleteComment(${item.id})">Delete</button>
     <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})"> ${item.likes} Likes</button>
     <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
-    <a href="" class="btn btn-outline-primary">Replies</a>
+    <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
     `
     :
     `
     <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
     <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
-    <a href="" class="btn btn-outline-primary">Replies</a>
+    <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
     `
   }
   </div>
@@ -404,13 +404,13 @@ function insertComments(items) {
       <button class="btn btn-danger" onclick="DeleteComment(${item.id})">Delete</button>
       <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})"> ${item.likes} Likes</button>
       <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
-      <a href="" class="btn btn-outline-primary">Replies</a>
+      <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
       `
       :
       `
       <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
       <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
-      <a href="" class="btn btn-outline-primary">Replies</a>
+      <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
       `
     }
     </div>
