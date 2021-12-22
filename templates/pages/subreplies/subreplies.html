@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Replies
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid my-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <p>{{ obj.comment.user.first_name }} {{ obj.comment.user.last_name }}(<a href="{% url 'user-posts' obj.comment.user.username %}">@{{ obj.comment.user.username }}</a>)</p>
+                <p style="font-size : 20px;">{{ obj.comment.content }}</p>
+                <p class="text-muted small">On {{ obj.comment.date }}</p>
+            </div>
+    </div>
+    <div class="container my-3">
+        <div class="card">
+            <div class="card-body">
+                <p>{{ obj.user.first_name }} {{ obj.user.last_name }}(<a href="{% url 'user-posts' obj.user.username %}">@{{ obj.user.username }}</a>)</p>
+                <p style="font-size : 20px;">{{ obj.content }}</p>
+                <p class="text-muted small">On {{ obj.date }}</p>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center my-3 mb-3">Replies</h1>
+
+    <div class="container">
+        <form
+        id="sub-reply-create-form"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="reply" value="{{ obj.id }}" />
+        <textarea name="content" class="form-control"> </textarea>
+        <button class="btn btn-primary my-2">Reply</button>
+      </form>
+      <a href="{% url 'details' obj.comment.post.id %}" class="btn btn-outline-primary">Back to post</a>
+      <div id="root" class="container my-3" data-id="{{ obj.id }}">
+    </div>
+    </div>
+
+</div>
+
+{% endblock content %}
+
+{% block js %}
+<script src="{% static '/js/subreplies/subreplies.js' %}"></script>
+{% endblock js %}
