@@ -88,7 +88,7 @@ function UpdateonLike(item) {
       `
       :
       `
-      <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
+      <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">${item.likes} Likes</button>
       <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
       `
     }
@@ -150,7 +150,7 @@ function addNewReply(item) {
       `
       :
       `
-      <button class="btn btn-primary"  onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
+      <button class="btn btn-primary"  onclick="likeUnlikeReply(${item.id}, 'like')">${item.likes} Likes</button>
       <button class="btn btn-primary"  onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
       `
     }
@@ -214,7 +214,7 @@ function insertToRoot(data) {
         `
         :
         `
-        <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
+        <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">${item.likes} Likes</button>
         <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
         `
       }

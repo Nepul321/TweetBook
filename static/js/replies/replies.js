@@ -89,7 +89,7 @@ function UpdateonLike(item) {
       `
       :
       `
-      <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
+      <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">${item.likes} Likes</button>
       <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
       <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
       `
@@ -153,7 +153,7 @@ function addNewReply(item) {
       `
       :
       `
-      <button class="btn btn-primary"  onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
+      <button class="btn btn-primary"  onclick="likeUnlikeReply(${item.id}, 'like')">${item.likes} Likes</button>
       <button class="btn btn-primary"  onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
       <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
       `
@@ -219,7 +219,7 @@ function insertToRoot(data) {
         `
         :
         `
-        <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
+        <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">${item.likes} Likes</button>
         <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
         <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
         `

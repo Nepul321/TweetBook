@@ -311,7 +311,7 @@ function UpdateCommentOnChange(item) {
     `
     :
     `
-    <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
+    <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">${item.likes} Likes</button>
     <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
     <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
     `
@@ -343,7 +343,7 @@ function addNewPost(item) {
     `
     :
     `
-    <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
+    <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">${item.likes} Likes</button>
     <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
     <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
     `
@@ -408,7 +408,7 @@ function insertComments(items) {
       `
       :
       `
-      <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">Like</button>
+      <button class="btn btn-primary" onclick="likeUnlikeComment('like', ${item.id})">${item.likes} Likes</button>
       <button class="btn btn-primary" onclick="likeUnlikeComment('unlike', ${item.id})">Unlike</button>
       <a href="/comment/${item.id}/replies/" class="btn btn-outline-primary">Replies</a>
       `
