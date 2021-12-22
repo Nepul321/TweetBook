@@ -3,7 +3,11 @@ from django.shortcuts import redirect, render
 from profiles.forms import ProfileForm
 from profiles.models import Profile
 from django.contrib.auth.decorators import login_required
-from comments.models import Comment
+from comments.models import (
+    Comment,
+    Reply,
+    SubReply
+)
 
 def HomeView(request):
     template = "pages/posts/home.html"
@@ -69,6 +73,19 @@ def RepliesView(request, id):
     obj = qs.first()
     context = {
         'obj' : obj,
+    }
+
+    return render(request, template, context)
+
+def SubRepliesView(request, id):
+    template = "pages/subreplies/subreplies.html"
+    qs = Reply.objects.filter(id=id)
+    if not qs:
+        return redirect('/')
+
+    obj = qs.first()
+    context = {
+      'obj' : obj,
     }
 
     return render(request, template, context)

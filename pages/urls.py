@@ -6,6 +6,7 @@ from .views import (
     ProfileEdit,
     ProfilePage,
     RepliesView,
+    SubRepliesView,
     UserPostsView
 )
 
@@ -16,4 +17,5 @@ urlpatterns = [
     path('profile/', ProfileEdit, name="profile-edit"),
     path('posts/<str:username>/', UserPostsView, name="user-posts"),
     path('comment/<int:id>/replies/', RepliesView, name="replies"),
+    path('reply/<int:id>/sub-replies/', SubRepliesView, name="sub-replies"),
 ]

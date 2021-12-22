@@ -85,13 +85,13 @@ function UpdateonLike(item) {
       <button class="btn btn-danger" onclick="DeleteReply(${item.id})">Delete</button>
       <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')"> ${item.likes} Likes</button>
       <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
-      <a href="" class="btn btn-outline-primary">Replies</a>
+      <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
       `
       :
       `
       <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
       <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
-      <a href="" class="btn btn-outline-primary">Replies</a>
+      <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
       `
     }
     </div>
@@ -149,13 +149,13 @@ function addNewReply(item) {
       <button class="btn btn-danger"  onclick="DeleteReply(${item.id})">Delete</button>
       <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')"> ${item.likes} Likes</button>
       <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
-      <a href="" class="btn btn-outline-primary">Replies</a>
+      <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
       `
       :
       `
       <button class="btn btn-primary"  onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
       <button class="btn btn-primary"  onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
-      <a href="" class="btn btn-outline-primary">Replies</a>
+      <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
       `
     }
     </div>
@@ -215,13 +215,13 @@ function insertToRoot(data) {
         <button class="btn btn-danger" onclick="DeleteReply(${item.id})">Delete</button>
         <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')"> ${item.likes} Likes</button>
         <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
-        <a href="" class="btn btn-outline-primary">Replies</a>
+        <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
         `
         :
         `
         <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'like')">Like</button>
         <button class="btn btn-primary" onclick="likeUnlikeReply(${item.id}, 'unlike')">Unlike</button>
-        <a href="" class="btn btn-outline-primary">Replies</a>
+        <a href="/reply/${item.id}/sub-replies/" class="btn btn-outline-primary">Replies</a>
         `
       }
       </div>
