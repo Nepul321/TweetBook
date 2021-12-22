@@ -3,10 +3,12 @@ from django.shortcuts import redirect, render
 from profiles.forms import ProfileForm
 from profiles.models import Profile
 from django.contrib.auth.decorators import login_required
+from posts.models import (
+    Post
+)
 from comments.models import (
     Comment,
-    Reply,
-    SubReply
+    Reply
 )
 
 def HomeView(request):
@@ -19,8 +21,13 @@ def HomeView(request):
 
 def DetailView(request, pk):
     template = "pages/posts/details.html"
+    qs = Post.objects.filter(id=pk)
+    if not qs:
+        return redirect('/')
+
+    obj = qs.first()
     context = {
-     'id' : pk,
+     'id' : obj.id,
     }
 
     return render(request, template, context)
