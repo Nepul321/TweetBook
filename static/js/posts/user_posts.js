@@ -6,9 +6,6 @@ function getPosts() {
  const xhr = new XMLHttpRequest();
  const method = "GET";
  const url = `/api/posts/?username=${root.id}`
- console.log(url)
- const responseType = "json"
- xhr.response = responseType
  xhr.open(method, url)
  xhr.onload = () => {
     const serverResponse = xhr.response;

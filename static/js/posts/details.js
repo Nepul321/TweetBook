@@ -8,8 +8,6 @@ function getData() {
   const xhr = new XMLHttpRequest();
   const method = "GET";
   const url = "/api/posts/" + info_div.id + "/";
-  const responseType = "json";
-  xhr.response = responseType;
   xhr.open(method, url);
   xhr.onload = () => {
     const serverResponse = xhr.response;
@@ -242,8 +240,6 @@ function getComments() {
   const xhr = new XMLHttpRequest();
   const method = "GET";
   const url = `/api/comments/post/${info_div.id}/`
-  const responseType = "json"
-  xhr.response = responseType
   xhr.open(method, url)
   xhr.onload = () => {
      const serverResponse = xhr.response;

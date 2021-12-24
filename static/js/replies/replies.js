@@ -17,25 +17,23 @@ function getCookie(name) {
   }
 
 function getReplies() {
-const comment_id = root.dataset.id
-const xhr = new XMLHttpRequest();
-const method = "GET";
-const url = `/api/replies/comment/${comment_id}/`
-const responseType = "json"
-xhr.response = responseType
-xhr.open(method, url)
-xhr.onload = () => {
-   const serverResponse = xhr.response;
-   var listedItems = serverResponse;
-   if (xhr.status === 200) {
-       listedItems = JSON.parse(listedItems)
-       insertToRoot(listedItems);
-   } else {
-       alert("An error occured")
-   }
-}
+  const comment_id = root.dataset.id
+  const xhr = new XMLHttpRequest();
+  const method = "GET";
+  const url = `/api/replies/comment/${comment_id}/`
+  xhr.open(method, url)
+  xhr.onload = () => {
+    const serverResponse = xhr.response;
+    var listedItems = serverResponse;
+    if (xhr.status === 200) {
+        listedItems = JSON.parse(listedItems)
+        insertToRoot(listedItems);
+    } else {
+        alert("An error occured")
+    }
+  }
 
-xhr.send();
+  xhr.send();
 }
 
 function DeleteReply(id) {
