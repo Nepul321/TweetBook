@@ -32,7 +32,11 @@ CURRENT_DEBUG = int(os.environ.get("CURRENT_DEBUG"))
 
 DEBUG = DEBUG_OPTIONS[CURRENT_DEBUG]
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if DEBUG:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+else:
+    ALLOWED_HOSTS = ['']
+
 LOGIN_URL = 'accounts-login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
@@ -185,6 +189,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
