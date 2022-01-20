@@ -1,3 +1,4 @@
+import uuid
 from django.shortcuts import (
         redirect, 
         render,
@@ -66,7 +67,8 @@ def SignUpView(request):
             qs = User.objects.filter(username=request.POST['username'])
             user = qs.first()
             user_key = UserKey.objects.create(
-                user=user
+                user=user,
+                key=uuid.uuid4()
             )
             user_key.save()
             user.is_active = False
