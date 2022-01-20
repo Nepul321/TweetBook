@@ -30,8 +30,12 @@ from profiles.models import (
 from django.contrib.auth.models import User
 from src.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
+from src import settings
 
-current_host = "http://localhost:8000"
+if settings.DEBUG == True:
+    current_host = "http://localhost:8000"
+else:
+    current_host = "https://tweetbooklive.herokuapp.com"
 
 @unauthenticated_user
 def LoginView(request):
