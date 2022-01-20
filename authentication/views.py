@@ -35,7 +35,7 @@ from src import settings
 if settings.DEBUG == True:
     current_host = "http://localhost:8000"
 else:
-    current_host = "https://tweetbooklive.herokuapp.com"
+    current_host = "http://tweetbooklive.herokuapp.com"
 
 @unauthenticated_user
 def LoginView(request):
