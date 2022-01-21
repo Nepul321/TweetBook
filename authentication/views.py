@@ -150,7 +150,7 @@ def ActivateAccountView(request, token):
                 user.user.is_active = True
                 user.user.save()
                 profile = Profile.objects.create(
-                    user=user
+                    user=user.user,
                 )
                 profile.save()
             else:
